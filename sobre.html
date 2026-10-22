@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Conheça Mateus Campeche além da câmera: suas referências, seu olhar e sua relação com o audiovisual.">
+  <title>Sobre o diretor — Mateus Campeche</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000;
+      --surface: #0a0a0a;
+      --text: #f4f1ed;
+      --muted: #a09b98;
+      --red: #e62b45;
+      --line: rgba(255,255,255,.15);
+      --display: "Syncopate", sans-serif;
+      --body: "Space Grotesk", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    ::selection {
+      background: var(--red);
+      color: white;
+    }
+
+    .topbar {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 6vw;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .brand span { color: var(--red); }
+
+    .nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .nav a { transition: color .25s ease; }
+    .nav a:hover { color: var(--red); }
+
+    .nav .active { color: var(--red); }
+
+    .hero {
+      min-height: 92svh;
+      padding: 170px 6vw 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 78% 30%, rgba(230,43,69,.12), transparent 34%),
+        linear-gradient(145deg, #080808, #000 65%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 36vw;
+      height: 36vw;
+      min-width: 280px;
+      min-height: 280px;
+      border: 1px solid rgba(230,43,69,.2);
+      border-radius: 50%;
+      right: -12vw;
+      top: 18%;
+      box-shadow: 0 0 0 5vw rgba(230,43,69,.025),
+                  0 0 0 10vw rgba(230,43,69,.02);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin: 0 0 24px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(40px, 8.5vw, 120px);
+      line-height: .98;
+      letter-spacing: -.075em;
+      font-weight: 700;
+      max-width: 1100px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 span {
+      color: var(--red);
+      display: block;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .index {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .15em;
+      white-space: nowrap;
+    }
+
+    .section {
+      padding: 120px 10vw;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 55px;
+      align-items: baseline;
+    }
+
+    .section-label {
+      color: var(--red);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .section-number {
+      color: #666;
+      font-size: 10px;
+      letter-spacing: .15em;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 9vw;
+      align-items: start;
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(30px, 5vw, 64px);
+      letter-spacing: -.06em;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    h2 .accent { color: var(--red); }
+
+    .body-copy {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+
+    .portrait-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .portrait {
+      width: clamp(190px, 22vw, 290px);
+      aspect-ratio: 1;
+      padding: 6px;
+      border: 1px solid rgba(230,43,69,.75);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230,43,69,.18), transparent 70%);
+      box-shadow: 0 0 45px rgba(230,43,69,.10);
+      overflow: hidden;
+    }
+
+    .portrait img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+    }
+
+    .portrait-caption {
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-align: center;
+    }
+
+    .portrait-wrap .manifesto {
+      align-self: stretch;
+      margin-top: 12px;
+    }
+\n    .manifesto {
+      border-left: 1px solid var(--red);
+      padding: 8px 0 8px 25px;
+      margin-top: 12px;
+    }
+
+    .manifesto p {
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 1.5;
+      letter-spacing: -.035em;
+    }
+
+    .manifesto small {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 9px;
+      letter-spacing: .17em;
+    }
+
+    .interests {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .interest {
+      min-height: 250px;
+      padding: 32px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      transition: background .35s ease, border-color .35s ease;
+    }
+
+    .interest:hover {
+      background: #0b0809;
+      border-color: rgba(230,43,69,.55);
+    }
+
+    .interest .num {
+      color: var(--red);
+      font-size: 10px;
+      letter-spacing: .15em;
+    }
+
+    .interest h3 {
+      margin: 42px 0 14px;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -.04em;
+    }
+
+    .interest p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 0;
+      max-width: 360px;
+    }
+
+    .closing {
+      padding: 120px 6vw 45px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(230,43,69,.12), transparent 45%),
+        #050505;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    .closing h2 {
+      max-width: 850px;
+      margin: 0 auto 30px;
+    }
+
+    .closing p {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 470px;
+      margin: 0 auto 35px;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 1px solid var(--line);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      transition: background .25s ease, border-color .25s ease;
+    }
+
+    .button.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    .button:hover {
+      border-color: var(--red);
+      background: rgba(230,43,69,.12);
+    }
+
+    .button.primary:hover { background: #c91d36; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px 6vw;
+      border-top: 1px solid var(--line);
+      color: #777;
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.2,.65,.3,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      .topbar { padding: 22px 6vw; }
+      .brand { font-size: 9px; }
+      .nav { gap: 13px; font-size: 8px; }
+      .hero { min-height: 82svh; padding: 140px 6vw 55px; }
+      .hero-bottom { align-items: flex-start; flex-direction: column; }
+      .hero-copy { font-size: 13px; }
+      .section { padding: 78px 7vw; }
+      .section-head { margin-bottom: 35px; }
+      .intro-grid { grid-template-columns: 1fr; gap: 35px; }
+      .interests { grid-template-columns: 1fr; }
+      .interest { min-height: 200px; padding: 25px; }
+      .interest h3 { margin-top: 28px; }
+      .closing { padding: 85px 7vw 35px; }
+      footer { flex-direction: column; padding: 24px 7vw; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">MATEUS <span>CAMPECHE</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html">O filme</a>
+      <a class="active" href="sobre.html" aria-current="page">Sobre o diretor</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow reveal">Um pouco além da imagem · 01 / Perfil</p>
+      <h1 class="reveal">FORA DE <span>CENA.</span></h1>
+      <div class="hero-bottom reveal">
+        <p class="hero-copy">Antes do corte final, existe alguém observando, aprendendo e tentando entender o mundo através das imagens.</p>
+        <span class="index">MATEUS CAMPECHE / 2026</span>
+      </div>
+    </section>
+
+    <section class="section" id="historia">
+      <div class="section-head reveal">
+        <span class="section-label">Quem está por trás da câmera</span>
+        <span class="section-number">[ 01 — SOBRE ]</span>
+      </div>
+
+      <div class="intro-grid">
+        <div class="reveal">
+          <h2>IMAGENS SÃO FEITAS DE <span class="accent">OLHAR.</span></h2>
+          <p class="body-copy">Sou Mateus Campeche, editor e realizador audiovisual. Trabalho com montagem, captação e som, explorando as possibilidades de contar histórias através da imagem e do ritmo.</p>
+          <p class="body-copy">Meu interesse não termina quando a câmera para de gravar. Também gosto de entender o processo, observar os detalhes e descobrir como cada escolha transforma aquilo que chega à tela.</p>
+        </div>
+
+        <div class="portrait-wrap reveal">
+          <div class="portrait">
+            <img src="images/74X6JsnDKBI8dXeke82i9OFMhf0.png" alt="Mateus Campeche" loading="lazy">
+          </div>
+          <span class="portrait-caption">MATEUS CAMPECHE · FORA DE CENA</span>
+          <aside class="manifesto">
+            <p>“O trabalho não está só no que aparece na tela, mas em tudo que faz aquela imagem existir.”</p>
+            <small>Por trás de cada imagem, um olhar.</small>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fora-de-cena">
+      <div class="section-head reveal">
+        <span class="section-label">Fora do trabalho</span>
+        <span class="section-number">[ 02 — REFERÊNCIAS ]</span>
+      </div>
+
+      <div class="interests">
+        <article class="interest reveal">
+          <span class="num">01 / CINEMA</span>
+          <h3>O filme e o processo</h3>
+          <p>Amo cinema. Me interessa tanto o filme pronto quanto o caminho entre a captação e a montagem.</p>
+        </article>
+
+        <article class="interest reveal">
+          <span class="num">02 / CÂMERAS</span>
+          <h3>Observar também é criar</h3>
+          <p>Gosto de câmeras e do processo de registrar uma imagem. Observar também faz parte do trabalho.</p>
+        </article>
+
+        <article class="interest reveal">
+          <span class="num">03 / ANIME</span>
+          <h3>Bleach</h3>
+          <p>Meu anime favorito é Bleach. Uma referência que também faz parte de quem sou fora do trabalho.</p>
+        </article>
+
+        <article class="interest reveal">
+          <span class="num">04 / APRENDIZADO</span>
+          <h3>Em construção</h3>
+          <p>Sigo fazendo cursos e estudando audiovisual e ferramentas de pós-produção. Ainda tem muita coisa para descobrir.</p>
+        </article>
+
+        <article class="interest reveal">
+          <span class="num">05 / FÉ</span>
+          <h3>Uma parte de quem sou</h3>
+          <p>Sou cristão e exerço liderança na igreja. A fé é uma parte importante da minha vida.</p>
+        </article>
+
+        <article class="interest reveal">
+          <span class="num">06 / PRÓXIMO CAPÍTULO</span>
+          <h3>Sempre existe mais</h3>
+          <p>Cada projeto é uma oportunidade de aprender algo novo, experimentar e continuar construindo meu olhar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow reveal">Fim desta parte. A história continua.</p>
+      <h2 class="reveal">TODA HISTÓRIA MERECE UM <span class="accent">OLHAR.</span></h2>
+      <p class="reveal">Quer conhecer os trabalhos ou conversar sobre um projeto audiovisual?</p>
+      <div class="actions reveal">
+        <a class="button primary" href="index.html#obras">Ver projetos</a>
+        <a class="button" href="contato.html">Entrar em contato</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Mateus Campeche · Editor & Realizador Audiovisual</span>
+    <a href="index.html">Voltar ao início ↑</a>
+  </footer>
+
+  <script>
+    (() => {
+      const items = document.querySelectorAll(".reveal");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        items.forEach(item => item.classList.add("visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      items.forEach(item => observer.observe(item));
+    })();
+  </script>
+</body>
+</html>
