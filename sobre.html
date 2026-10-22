@@ -46,33 +46,40 @@
     }
 
     .topbar {
-      position: absolute;
+      position: fixed;
       z-index: 5;
       top: 0;
       left: 0;
       width: 100%;
+      min-height: 80px;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 6vw;
+      gap: 32px;
+      padding: 24px 48px;
       border-bottom: 1px solid var(--line);
+      background: rgba(0, 0, 0, .82);
+      backdrop-filter: blur(4px);
     }
 
     .brand {
+      font-family: 'Syncopate', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .12em;
     }
 
-    .brand span { color: var(--red); }
+    .brand span { color: #fff; }
 
     .nav {
       display: flex;
-      gap: 28px;
+      gap: 32px;
       align-items: center;
       font-size: 10px;
       letter-spacing: .13em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav a { transition: color .25s ease; }
@@ -387,6 +394,8 @@
     }
 
     @media (max-width: 700px) {
+      .topbar { padding: 22px 6vw; gap: 14px; }
+      .nav { gap: 13px; font-size: 8px; }
       .topbar { padding: 22px 6vw; }
       .brand { font-size: 9px; }
       .nav { gap: 13px; font-size: 8px; }
@@ -413,15 +422,38 @@
       .reveal { opacity: 1; transform: none; }
     }
   </style>
+
+<style id="cinematic-motion">
+@media (prefers-reduced-motion: no-preference) {
+  .cinematic-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.65,.3,1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .cinematic-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
   <header class="topbar">
     <a class="brand" href="index.html">MATEUS <span>CAMPECHE</span></a>
     <nav class="nav" aria-label="Navegação principal">
-      <a href="index.html">O filme</a>
-      <a class="active" href="sobre.html" aria-current="page">Sobre o diretor</a>
-      <a href="contato.html">Contato</a>
+      <a href="index.html#filme">O FILME</a>
+      <a class="active" href="sobre.html" aria-current="page">SOBRE O DIRETOR</a>
+      <a href="contato.html">CONTATO</a>
     </nav>
   </header>
 
@@ -544,5 +576,35 @@
       items.forEach(item => observer.observe(item));
     })();
   </script>
+
+<script id="cinematic-motion-script">
+(() => {
+  const selectors = 'main h1, main h2, main h3, .hero-copy, .eyebrow, .section-head, .interest, .closing, main article';
+  const elements = document.querySelectorAll(selectors);
+  if (!elements.length) return;
+
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+
+  elements.forEach((el, index) => {
+    if (el.closest('header, nav, footer')) return;
+    el.classList.add('cinematic-reveal');
+    el.style.setProperty('--reveal-delay', `${(index % 4) * 100}ms`);
+    observer.observe(el);
+  });
+})();
+</script>
+
 </body>
 </html>
